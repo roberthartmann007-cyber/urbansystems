@@ -38,7 +38,6 @@
       width:100%;
       object-fit:cover;
       display:block;
-      background:#111; /* nicer while loading */
     }
     .meta { padding:12px 14px 14px; }
     .title { font-weight:600; font-size:15px; line-height:1.2; margin:0 0 4px; }
@@ -74,8 +73,32 @@
     <p>Click any cover to read it in a lightbox.</p>
   </header>
 
-  <!-- Empty grid; cards will be generated from assets/manifest.json -->
-  <main class="grid" id="grid" aria-label="PDF gallery"></main>
+  <main class="grid" id="grid" aria-label="PDF gallery">
+    <!-- Example book cards. Replace cover src, data-pdf, and titles -->
+    <article class="book" tabindex="0" role="button" aria-label="Open Spring Catalog PDF" data-pdf="assets/spring-catalog.pdf">
+      <img class="cover" src="assets/spring-cover.jpg" alt="Spring Catalog cover" />
+      <div class="meta">
+        <h3 class="title">Spring Catalog</h3>
+        <p class="subtitle">24 pages • PDF</p>
+      </div>
+    </article>
+
+    <article class="book" tabindex="0" role="button" aria-label="Open Lookbook 2025 PDF" data-pdf="assets/lookbook-2025.pdf">
+      <img class="cover" src="assets/lookbook-cover.jpg" alt="Lookbook 2025 cover" />
+      <div class="meta">
+        <h3 class="title">Lookbook 2025</h3>
+        <p class="subtitle">Flip through styles</p>
+      </div>
+    </article>
+
+    <article class="book" tabindex="0" role="button" aria-label="Open Product Guide PDF" data-pdf="assets/product-guide.pdf">
+      <img class="cover" src="assets/product-guide-cover.jpg" alt="Product Guide cover" />
+      <div class="meta">
+        <h3 class="title">Product Guide</h3>
+        <p class="subtitle">Specs and pricing</p>
+      </div>
+    </article>
+  </main>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="PDF viewer">
@@ -92,14 +115,12 @@
     const frame = document.getElementById('pdfFrame');
     const closeBtn = document.getElementById('closeBtn');
 
-    // Optional: use your own PDF.js viewer (if you copied it to /pdfjs/web/viewer.html)
+    // Optional: point this to your own hosted PDF.js viewer for better UX:
     // const PDFJS_VIEWER = '/pdfjs/web/viewer.html?file=';
-    const PDFJS_VIEWER = ''; // leave empty to use the browser's built-in PDF viewer
+    const PDFJS_VIEWER = ''; // empty uses browser's built-in viewer
 
     function openPDF(url) {
-      frame.src = PDFJS_VIEWER
-        ? (PDFJS_VIEWER + encodeURIComponent(url) + '#zoom=page-fit')
-        : (url + '#view=FitH');
+      frame.src = PDFJS_VIEWER ? (PDFJS_VIEWER + encodeURIComponent(url) + '#zoom=page-fit') : url + '#view=FitH';
       lightbox.classList.add('open');
       closeBtn.focus();
     }
@@ -108,58 +129,24 @@
       frame.src = 'about:blank';
     }
 
+    grid.addEventListener('click', (e) => {
+      const card = e.target.closest('.book');
+      if (!card) return;
+      const url = card.getAttribute('data-pdf');
+      if (url) openPDF(url);
+    });
+
+    grid.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('book')) {
+        e.preventDefault();
+        const url = e.target.getAttribute('data-pdf');
+        if (url) openPDF(url);
+      }
+    });
+
     closeBtn.addEventListener('click', closePDF);
     lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closePDF(); });
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closePDF(); });
-
-    // Build a card element from one manifest item
-    function makeCard(item) {
-      const article = document.createElement('article');
-      article.className = 'book';
-      article.tabIndex = 0;
-      article.role = 'button';
-      article.setAttribute('aria-label', item.ariaLabel || `Open ${item.title} PDF`);
-      article.dataset.pdf = item.pdf;
-
-      article.innerHTML = `
-        <img class="cover" src="${item.cover}" alt="${item.title} cover" loading="lazy" />
-        <div class="meta">
-          <h3 class="title">${item.title}</h3>
-          <p class="subtitle">${item.subtitle || ''}</p>
-        </div>
-      `;
-
-      // Click / keyboard handlers
-      article.addEventListener('click', () => openPDF(item.pdf));
-      article.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPDF(item.pdf); }
-      });
-
-      return article;
-    }
-
-    // Load the manifest and render cards
-    fetch('assets/manifest.json', { cache: 'no-cache' })
-      .then(r => {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
-      .then(items => {
-        if (!Array.isArray(items) || items.length === 0) {
-          grid.innerHTML = '<p style="color:#a8acb3">No flipbooks listed in <code>assets/manifest.json</code>.</p>';
-          return;
-        }
-        items.forEach(item => {
-          // basic validation to avoid silent failures
-          if (item && item.title && item.pdf && item.cover) {
-            grid.appendChild(makeCard(item));
-          }
-        });
-      })
-      .catch(err => {
-        console.error('Failed to load manifest.json', err);
-        grid.innerHTML = '<p style="color:#a8acb3">Could not load <code>assets/manifest.json</code>. Make sure the file exists and is valid JSON.</p>';
-      });
   </script>
 </body>
 </html>
