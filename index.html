@@ -10,14 +10,44 @@
     }
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Noto Color Emoji", sans-serif; background:var(--bg); color:var(--text); }
 
+    /* Top navigation bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg);
+      padding: 16px 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .topbar h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .nav-buttons button {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: background .2s ease;
+    }
+    .nav-buttons button:hover {
+      background: var(--ring);
+      color: white;
+    }
+
     /* Video Header */
     .video-header {
       position: relative;
       width: 100%;
-      height: 100vh; /* volle Höhe */
+      height: 70vh; /* etwas niedriger als full screen */
       overflow: hidden;
-      margin: 0;
-      padding: 0;
     }
     .video-header video {
       position: absolute;
@@ -26,22 +56,11 @@
       height: 100%;
       object-fit: cover;
     }
-    .video-header .overlay {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: var(--text);
-      background: rgba(0,0,0,0.4);
-      padding: 20px 30px;
-      border-radius: 12px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: inline-block;
-    }
 
-    h1 { margin:0 0 6px; font-size:clamp(20px, 3.5vw, 34px); }
-    p { margin:0; color:var(--muted); }
+    /* Abstand nach unten zum Grid */
+    .video-header + .grid {
+      margin-top: 60px; /* Abstand erhöhen */
+    }
 
     .grid {
       display:grid;
@@ -98,20 +117,26 @@
   </style>
 </head>
 <body>
-  <!-- Vollbild Video Header -->
+  <!-- Top bar with header and buttons -->
+  <div class="topbar">
+    <h1>Design for (urban) systems</h1>
+    <div class="nav-buttons">
+      <button>About</button>
+      <button>Projects</button>
+      <button>Contact</button>
+    </div>
+  </div>
+
+  <!-- Video -->
   <header class="video-header">
     <video autoplay muted loop playsinline>
       <source src="assets/header-video.mp4" type="video/mp4">
       Dein Browser unterstützt kein HTML5-Video.
     </video>
-    <div class="overlay">
-      <h1>Design for (urban) systems</h1>
-      <p>Select project.</p>
-    </div>
   </header>
 
+  <!-- Grid -->
   <main class="grid" id="grid" aria-label="PDF gallery">
-    <!-- Example book cards. Replace cover src, data-pdf, and titles -->
     <article class="book" tabindex="0" role="button" aria-label="reducing energy consumption" data-pdf="assets/spring-catalog.pdf">
       <img class="cover" src="assets/spring-cover.jpg" alt="Spring Catalog cover" />
       <div class="meta">
@@ -121,67 +146,4 @@
     </article>
 
     <article class="book" tabindex="0" role="button" aria-label="Open Lookbook 2025 PDF" data-pdf="assets/lookbook-2025.pdf">
-      <img class="cover" src="assets/lookbook-cover.jpg" alt="Lookbook 2025 cover" />
-      <div class="meta">
-        <h3 class="title">Lookbook 2025</h3>
-        <p class="subtitle">Flip through styles</p>
-      </div>
-    </article>
-
-    <article class="book" tabindex="0" role="button" aria-label="Open Product Guide PDF" data-pdf="assets/product-guide.pdf">
-      <img class="cover" src="assets/product-guide-cover.jpg" alt="Product Guide cover" />
-      <div class="meta">
-        <h3 class="title">Product Guide</h3>
-        <p class="subtitle">Specs and pricing</p>
-      </div>
-    </article>
-  </main>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="PDF viewer">
-    <div class="viewer">
-      <button class="close" id="closeBtn" aria-label="Close">Close ✕</button>
-      <iframe id="pdfFrame" title="PDF viewer"></iframe>
-    </div>
-  </div>
-
-  <script>
-    const grid = document.getElementById('grid');
-    const lightbox = document.getElementById('lightbox');
-    const frame = document.getElementById('pdfFrame');
-    const closeBtn = document.getElementById('closeBtn');
-
-    // Optional: point this to your own hosted PDF.js viewer for better UX:
-    const PDFJS_VIEWER = ''; // empty uses browser's built-in viewer
-
-    function openPDF(url) {
-      frame.src = PDFJS_VIEWER ? (PDFJS_VIEWER + encodeURIComponent(url) + '#zoom=page-fit') : url + '#view=FitH';
-      lightbox.classList.add('open');
-      closeBtn.focus();
-    }
-    function closePDF() {
-      lightbox.classList.remove('open');
-      frame.src = 'about:blank';
-    }
-
-    grid.addEventListener('click', (e) => {
-      const card = e.target.closest('.book');
-      if (!card) return;
-      const url = card.getAttribute('data-pdf');
-      if (url) openPDF(url);
-    });
-
-    grid.addEventListener('keydown', (e) => {
-      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('book')) {
-        e.preventDefault();
-        const url = e.target.getAttribute('data-pdf');
-        if (url) openPDF(url);
-      }
-    });
-
-    closeBtn.addEventListener('click', closePDF);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closePDF(); });
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closePDF(); });
-  </script>
-</body>
-</html>
+      <img class="cover" src="assets/lookbook-cover.jpg" alt
