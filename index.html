@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> Design for Urban Systems(Clickable)</title>
+  <title>Design for Urban Systems (Clickable)</title>
   <style>
     :root {
       --bg: #0b0b0c; --card: #16171a; --text: #e9eaee; --muted:#a8acb3; --ring:#3a86ff;
@@ -11,33 +11,43 @@
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Noto Color Emoji", sans-serif; background:var(--bg); color:var(--text); }
 
     /* Top navigation bar */
-  <!-- Top bar with header and buttons -->
-.topbar {
-  display: flex;
-  justify-content: flex-start; /* Header links */
-  align-items: center;
-  background: var(--bg);
-  padding: 16px 24px;
-  position: relative;
-  z-index: 10;
-}
-
-.topbar h1 {
-  margin: 0;
-  font-size: 20px;
-  margin-right: auto; /* schiebt Buttons nach rechts */
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 12px;
-}
+    .topbar {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background: var(--bg);
+      padding: 16px 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .topbar h1 {
+      margin: 0;
+      font-size: 20px;
+      margin-right: auto; /* schiebt Buttons nach rechts */
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .nav-buttons button {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: background .2s ease;
+    }
+    .nav-buttons button:hover {
+      background: var(--ring);
+      color: white;
+    }
 
     /* Video Header */
     .video-header {
       position: relative;
       width: 100%;
-      height: 70vh; /* etwas niedriger als full screen */
+      height: 70vh;
       overflow: hidden;
     }
     .video-header video {
@@ -48,9 +58,9 @@
       object-fit: cover;
     }
 
-    /* Abstand nach unten zum Grid */
+    /* Abstand zum Grid */
     .video-header + .grid {
-      margin-top: 60px; /* Abstand erhöhen */
+      margin-top: 60px;
     }
 
     .grid {
@@ -137,4 +147,66 @@
     </article>
 
     <article class="book" tabindex="0" role="button" aria-label="Open Lookbook 2025 PDF" data-pdf="assets/lookbook-2025.pdf">
-      <img class="cover" src="assets/lookbook-cover.jpg" alt
+      <img class="cover" src="assets/lookbook-cover.jpg" alt="Lookbook 2025 cover" />
+      <div class="meta">
+        <h3 class="title">Lookbook 2025</h3>
+        <p class="subtitle">Flip through styles</p>
+      </div>
+    </article>
+
+    <article class="book" tabindex="0" role="button" aria-label="Open Product Guide PDF" data-pdf="assets/product-guide.pdf">
+      <img class="cover" src="assets/product-guide-cover.jpg" alt="Product Guide cover" />
+      <div class="meta">
+        <h3 class="title">Product Guide</h3>
+        <p class="subtitle">Specs and pricing</p>
+      </div>
+    </article>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="PDF viewer">
+    <div class="viewer">
+      <button class="close" id="closeBtn" aria-label="Close">Close ✕</button>
+      <iframe id="pdfFrame" title="PDF viewer"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const grid = document.getElementById('grid');
+    const lightbox = document.getElementById('lightbox');
+    const frame = document.getElementById('pdfFrame');
+    const closeBtn = document.getElementById('closeBtn');
+
+    const PDFJS_VIEWER = ''; // empty uses browser's built-in viewer
+
+    function openPDF(url) {
+      frame.src = PDFJS_VIEWER ? (PDFJS_VIEWER + encodeURIComponent(url) + '#zoom=page-fit') : url + '#view=FitH';
+      lightbox.classList.add('open');
+      closeBtn.focus();
+    }
+    function closePDF() {
+      lightbox.classList.remove('open');
+      frame.src = 'about:blank';
+    }
+
+    grid.addEventListener('click', (e) => {
+      const card = e.target.closest('.book');
+      if (!card) return;
+      const url = card.getAttribute('data-pdf');
+      if (url) openPDF(url);
+    });
+
+    grid.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('book')) {
+        e.preventDefault();
+        const url = e.target.getAttribute('data-pdf');
+        if (url) openPDF(url);
+      }
+    });
+
+    closeBtn.addEventListener('click', closePDF);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closePDF(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closePDF(); });
+  </script>
+</body>
+</html>
