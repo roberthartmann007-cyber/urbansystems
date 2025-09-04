@@ -9,7 +9,37 @@
       --bg: #0b0b0c; --card: #16171a; --text: #e9eaee; --muted:#a8acb3; --ring:#3a86ff;
     }
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Noto Color Emoji", sans-serif; background:var(--bg); color:var(--text); }
-    header { padding:28px 20px; text-align:center; }
+
+    /* Video Header */
+    .video-header {
+      position: relative;
+      width: 100%;
+      height: 100vh; /* volle Höhe */
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .video-header video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .video-header .overlay {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--text);
+      background: rgba(0,0,0,0.4);
+      padding: 20px 30px;
+      border-radius: 12px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-block;
+    }
+
     h1 { margin:0 0 6px; font-size:clamp(20px, 3.5vw, 34px); }
     p { margin:0; color:var(--muted); }
 
@@ -68,8 +98,7 @@
   </style>
 </head>
 <body>
-  <header>
-  <body>
+  <!-- Vollbild Video Header -->
   <header class="video-header">
     <video autoplay muted loop playsinline>
       <source src="assets/header-video.mp4" type="video/mp4">
@@ -79,7 +108,6 @@
       <h1>Design for (urban) systems</h1>
       <p>Select project.</p>
     </div>
-  </header>
   </header>
 
   <main class="grid" id="grid" aria-label="PDF gallery">
@@ -113,7 +141,6 @@
   <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="PDF viewer">
     <div class="viewer">
       <button class="close" id="closeBtn" aria-label="Close">Close ✕</button>
-      <!-- If you host PDF.js viewer, use it here instead of the native viewer -->
       <iframe id="pdfFrame" title="PDF viewer"></iframe>
     </div>
   </div>
@@ -125,7 +152,6 @@
     const closeBtn = document.getElementById('closeBtn');
 
     // Optional: point this to your own hosted PDF.js viewer for better UX:
-    // const PDFJS_VIEWER = '/pdfjs/web/viewer.html?file=';
     const PDFJS_VIEWER = ''; // empty uses browser's built-in viewer
 
     function openPDF(url) {
