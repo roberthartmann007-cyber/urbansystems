@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Spring Catalog",
+    "subtitle": "24 pages • PDF",
+    "pdf": "assets/spring-catalog.pdf",
+    "cover": "assets/spring-catalog-cover.jpg"
+  },
+  {
+    "title": "Lookbook 2025",
+    "subtitle": "Flip through styles",
+    "pdf": "assets/lookbook-2025.pdf",
+    "cover": "assets/lookbook-2025-cover.jpg"
+  }
+]
