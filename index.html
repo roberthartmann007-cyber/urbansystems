@@ -32,7 +32,7 @@
     .nav-buttons button {
       background: transparent;
       color: var(--text);
-      border: 2px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.9);
       border-radius: 40px;
       padding: 8px 14px;
       cursor: pointer;
@@ -76,10 +76,11 @@
       border-radius:20px;
       overflow:hidden;
       box-shadow: 0 12px 30px rgba(0,0,0,.35);
-      transition: transform .2s ease, box-shadow .2s ease;
+      transition: transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+            box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
       position:relative;
       cursor:pointer;
-      border:1px solid rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.00);
       isolation:isolate;
     }
     .book:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.45); }
