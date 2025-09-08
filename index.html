@@ -144,16 +144,16 @@
     }
 .spin-bounce {
   display: inline-block;
-  animation: spinBounce 3.4s infinite ease-in-out;
-  transform-origin: center/* slightly elevated pivot */
+  animation: spinBounce 3s infinite ease-in-out alternate;
+  transform-origin: center 40%; /* elevated pivot */
 }
 
 @keyframes spinBounce {
   0%   { transform: rotate(0deg) scale(1); }
-  20%  { transform: rotate(45deg) scale(1.1); }  /* bounce into 45° */
-  40%  { transform: rotate(45deg) scale(1); }    /* hold at 45° */
-  80%  { transform: rotate(90deg) scale(1.1); }  /* bounce into 90° */
-  100% { transform: rotate(90deg) scale(1); }    /* settle at 90° */
+  20%  { transform: rotate(45deg) scale(1.1); }
+  40%  { transform: rotate(45deg) scale(1); }
+  80%  { transform: rotate(90deg) scale(1.1); }
+  100% { transform: rotate(90deg) scale(1); }
 }
   </style>
 </head>
