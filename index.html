@@ -5,14 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Design for Urban Systems (Clickable)</title>
   <style>
+
+    html {
+  scroll-behavior: smooth;
+}
     :root {
       --bg: #050505; --card: #16171a; --text: #e9eaee; --muted:#a8acb3; --ring:#fa97c9;
     }
     body {
-  margin: 0;
-  font-family: "Neue Haas Grotesk", sans-serif;
-  background: var(--bg);
-  color: var(--text);
+    margin: 0;
+    font-family: "Neue Haas Grotesk", sans-serif;
+    background: var(--bg);
+    color: var(--text);
 }
     .topbar {
       display: flex;
@@ -144,12 +148,12 @@
     }
 .spin-bounce {
   display: inline-block;
-  animation: spinBreath 6s infinite ease-in-out;
+  animation: spinBreath 7s infinite ease-in-out;
   transform-origin: center center;
 }
 @keyframes spinBreath {
   0%   { transform: rotate(0deg) scale(1); }
-  40%  { transform: rotate(45deg) scale(1.07); }  /* inhale */
+  40%  { transform: rotate(45deg) scale(1.15); }  /* inhale */
   100% { transform: rotate(0deg) scale(1); }      /* exhale */
 }
   </style>
@@ -158,11 +162,11 @@
   <!-- Top bar with header and buttons -->
   <div class="topbar">
     <h1>ROBERT HARTMANN.DESIGN.URBAN SYSTEMS</h1>
-    <div class="nav-buttons">
-      <button>About</button>
-      <button>Projects</button>
-      <button>Contact</button>
-    </div>
+   <div class="nav-buttons">
+  <a href="#about"><button>About</button></a>
+  <a href="#projects"><button>Projects</button></a>
+  <button>Contact</button>
+</div>
   </div>
 
   <!-- Video -->
@@ -188,7 +192,9 @@
 </section>
 
 <!-- Grid -->
-<main class="grid" id="grid" aria-label="PDF gallery">
+<main class="grid" id="projects" aria-label="PDF gallery">
+  <!-- your <article class="book"> items -->
+</main>
   <article class="book" tabindex="0" role="button" aria-label="ORAS ECOSHOWER" data-pdf="assets/oras.pdf">
     <img class="cover" src="assets/oras.jpg" alt="Spring Catalog cover" />
     <div class="meta">
