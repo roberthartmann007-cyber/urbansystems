@@ -8,8 +8,12 @@
     :root {
       --bg: #050505; --card: #16171a; --text: #e9eaee; --muted:#a8acb3; --ring:#fa97c9;
     }
-    body { margin:0; font-family: "Neue Haas Grotesk", sans-serif;
-    /* Top navigation bar */
+    body {
+  margin: 0;
+  font-family: "Neue Haas Grotesk", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
     .topbar {
       display: flex;
       justify-content: flex-start;
@@ -24,6 +28,7 @@
   font-size: 20px;   
   font-weight: 500;  
   margin-right: auto; /* pushes buttons right */
+  color: var(--text);
 }
     .nav-buttons {
       display: flex;
@@ -129,6 +134,7 @@
       font-size: 100px;
       font-weight: 200;
       margin-bottom: 16px;
+      color: var(--text);
     }
     
     .intro p {
