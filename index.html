@@ -23,12 +23,12 @@
       position: relative;
       z-index: 10;
     }
-   .topbar h1 {
-  margin: 0;
-  font-size: 20px;   
-  font-weight: 500;  
-  margin-right: auto; /* pushes buttons right */
-  color: var(--text);
+    .topbar h1 {
+      margin: 0;
+      font-size: 20px;   
+      font-weight: 500;  
+      margin-right: auto; /* pushes buttons right */
+      color: var(--text);
 }
     .nav-buttons {
       display: flex;
@@ -41,7 +41,7 @@
       border-radius: 40px;
       padding: 8px 14px;
       cursor: pointer;
-      transition: background .7s ease;
+      transition: background .4s ease;
     }
     .nav-buttons button:hover {
       background: white;
@@ -142,6 +142,19 @@
       line-height: 1.6;
       color: var(--muted);
     }
+    .spin-bounce {
+  display: inline-block;
+  animation: spinBounce 1s infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes spinBounce {
+  0%   { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(90deg) scale(1.2); }
+  50%  { transform: rotate(180deg) scale(1); }
+  75%  { transform: rotate(270deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
   </style>
 </head>
 <body>
@@ -166,8 +179,10 @@
 <!-- Intro Section -->
 <section class="intro">
   <div class="intro-content">
-    <h2> From vision to intervention-concept, in the intersections of design × mobility planning – in the form of strategy papers and digital experiences.
-  </h2>
+  <h2>
+  From vision to intervention-concept, in the intersections of design 
+  <span class="spin-bounce">×</span> mobility planning – in the form of strategy papers and digital experiences.
+</h2>
   </div>
 </section>
 
