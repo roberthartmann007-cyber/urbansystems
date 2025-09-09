@@ -243,10 +243,11 @@
 
     const PDFJS_VIEWER = ''; // empty uses browser's built-in viewer
 
-    function openPDF(url) {
-      frame.src = PDFJS_VIEWER ? (PDFJS_VIEWER + encodeURIComponent(url) + '#zoom=page-fit') : url + '#view=FitH';
-      lightbox.classList.add('open');
-      closeBtn.focus();
+  function openPDF(url) {
+  frame.src = url + '#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
+  lightbox.classList.add('open');
+  closeBtn.focus();
+}
     }
     function closePDF() {
       lightbox.classList.remove('open');
