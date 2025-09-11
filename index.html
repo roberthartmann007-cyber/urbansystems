@@ -31,7 +31,7 @@
 
 .topbar h1 {
   margin: 0;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 500;
   margin-right: auto;
   color: var(--text);
@@ -146,7 +146,7 @@
       display:block;
     }
     .meta { padding:12px 14px 14px; }
-    .title { font-weight:600; font-size:15px; line-height:1.2; margin:0 0 4px; }
+    .title { font-weight:600; font-size:16px; line-height:1.2; margin:0 0 4px; }
     .subtitle { color:var(--muted); font-size:13px; margin:0; }
 
     /* Lightbox */
@@ -181,7 +181,7 @@
 }
 
 .intro h2 {
-  font-size: 62px;
+  font-size: 65px;
   font-weight: 200;
   margin-bottom: 16px;
   color: var(--text);
@@ -221,14 +221,14 @@
   40%  { transform: rotate(45deg) scale(1.15); }  /* inhale */
   100% { transform: rotate(0deg) scale(1); }      /* exhale */
 }
-
 .about-content {
   display: flex;
+  flex-direction: row-reverse; /* image on right, text on left */
   align-items: flex-start; /* aligns h2 with image top */
   gap: 40px;
   max-width: 1000px;
   margin: 120px auto 80px;
-  margin-top: 300px; /* pushes section down */
+  margin-top: 100px; /* pushes section down */
   padding: 0 20px;
 }
 
@@ -242,24 +242,17 @@
 
 .about-text {
   flex: 1;
-  line-height: 1.6;
-  font-size: 37px;
+  line-height: 1.5;
+  font-size: 26px;
   font-weight: 200; /* adjusted weight */
   text-align: left;  /* left aligned on desktop */
   color: var(--text);
 }
-  .about-text h2 {
-  font-size: 48px;   /* oder kleiner, wenn du willst */
-  font-weight: 200;  /* hier änderst du das Gewicht */
-  margin-top: 0;
-  margin-bottom: 20px;
-  color: var(--text);
-}
-
+ 
 /* Tablet */
 @media (max-width: 1024px) {
   .about-text {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 200;
   }
 }
@@ -267,7 +260,7 @@
 /* Mobile */
 @media (max-width: 768px) {
   .about-content {
-    flex-direction: column;
+    flex-direction: column; /* stack image and text */
     align-items: center;
     text-align: center;
   }
@@ -426,7 +419,6 @@ burger.addEventListener('click', () => {
   <div class="about-content">
     <img src="assets/portrait.jpg" alt="Portrait of Robert Hartmann" class="about-image" />
     <div class="about-text">
-      <h2>About Me</h2>
       <p>
      With a background in user experience, system, and service Design, Hartmann works on transdisciplinary problems often surrounding the sustainable and social transformation of cities. 
      As part of the European Design Studies master’s program, Hartmann studied at Köln International School of Design, ENSCI–Les Ateliers in Paris, and Aalto University in Helsinki.
