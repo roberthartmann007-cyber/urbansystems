@@ -157,29 +157,41 @@
   100% { transform: rotate(0deg) scale(1); }      /* exhale */
 }
 
-
-    .about {
-  max-width: 752px;
-  margin: 80px auto;
+.about-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px; /* space between image and text */
+  max-width: 1000px;
+  margin: 120px auto 80px;
   padding: 0 20px;
-  line-height: 1.6;
-  text-align: left;
-  margin-top: 300px;
 }
 
-.about h2 {
-  font-size: 85px;
+.about-image {
+  width: 280px;
+  height: auto;
+  border-radius: 20px; /* same as your .book cards */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.about-text {
+  flex: 1;
+  line-height: 1.6;
+}
+
+.about-text h2 {
+  font-size: 41px;
   font-weight: 500;
   margin-bottom: 20px;
   color: var(--text);
 }
 
-.about p {
-  font-size: 32px;
-  font-weight: 30;
+.about-text p {
+  font-size: 23px;
   color: var(--text);
   margin-bottom: 16px;
 }
+
   </style>
 </head>
 <body>
@@ -299,14 +311,17 @@
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closePDF(); });
   </script>
 
-  <!-- About Me Section -->
+ <!-- About Me Section -->
 <section class="about" id="about">
   <div class="about-content">
-    <h2>Robert Hartmann</h2>
-    <p>
-    With a background in user experience, system, and service Design, Hartmann works on transdisciplinary problems often surrounding the sustainable and social transformation of cities. 
-    As part of the European Design Studies master’s program, Hartmann studied at Köln International School of Design, ENSCI–Les Ateliers in Paris, and Aalto University in Helsinki.”
-    </p>
+    <img src="assets/portrait.jpeg" alt="Portrait of Robert Hartmann" class="about-image" />
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+     With a background in user experience, system, and service Design, Hartmann works on transdisciplinary problems often surrounding the sustainable and social transformation of cities. 
+     As part of the European Design Studies master’s program, Hartmann studied at Köln International School of Design, ENSCI–Les Ateliers in Paris, and Aalto University in Helsinki.
+      </p>
+    </div>
   </div>
 </section>
 </body>
