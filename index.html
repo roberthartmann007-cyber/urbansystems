@@ -126,25 +126,60 @@
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     @media (prefers-reduced-motion: reduce) { .book, .lightbox { transition:none; } }
 
-    /* Intro Section */
-    .intro {
-      max-width: 1200px;
-      margin: 90px auto;
-      padding: 0 20px;
-      text-align: left;
-    }
-    
-    .intro h2 {
-      font-size: 85px;
-      font-weight: 200;
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-    
-    .intro p {
-      font-size: 60px;
-      line-height: 1.6;
-      color: var(--muted);
+/* Intro Section */
+.intro {
+  max-width: 1200px;
+  margin: 90px auto;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.intro h2 {
+  font-size: 85px;
+  font-weight: 200;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.intro p {
+  font-size: 60px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .intro h2 {
+    font-size: 60px;
+  }
+  .intro p {
+    font-size: 40px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .intro {
+    margin: 60px auto;
+    text-align: center; /* more natural on small screens */
+  }
+  .intro h2 {
+    font-size: 42px;
+  }
+  .intro p {
+    font-size: 28px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .intro h2 {
+    font-size: 32px;
+  }
+  .intro p {
+    font-size: 20px;
+  }
+}
     }
 .spin-bounce {
   display: inline-block;
@@ -166,7 +201,6 @@
   margin-top: 300px; /* pushes section down */
   padding: 0 20px;
 }
-
 .about-image {
   width: 280px;
   height: auto;
@@ -178,9 +212,19 @@
 .about-text {
   flex: 1;
   line-height: 1.6;
+  font-size: 31px;   /* desktop main text size */
+  text-align: left;  /* left aligned on desktop */
+  color: var(--text);
 }
 
-/* Responsive layout */
+/* Tablet */
+@media (max-width: 1024px) {
+  .about-text {
+    font-size: 24px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .about-content {
     flex-direction: column;
@@ -193,8 +237,19 @@
     max-width: 300px;
     margin-bottom: 24px;
   }
+
+  .about-text {
+    font-size: 20px;
+    text-align: center; /* center text on smaller screens */
+  }
 }
 
+/* Small Mobile */
+@media (max-width: 480px) {
+  .about-text {
+    font-size: 18px;
+  }
+}
   </style>
 </head>
 <body>
@@ -234,14 +289,6 @@
 <!-- Grid -->
 <main class="grid" id="grid" aria-label="PDF gallery">
   <!-- your <article class="book"> items -->
-    <article class="book" tabindex="0" role="button" aria-label="unserdeins" data-pdf="assets/unserdeins.pdf">
-    <img class="cover" src="assets/unserdeins-cover.jpg" alt="Lookbook 2025 cover" />
-    <div class="meta">
-      <h3 class="title">UNSERDEINS</h3>
-      <p class="subtitle">decarbonizing transport through P2P carsharing</p>
-    </div>
-  </article>
-  
   <article class="book" tabindex="0" role="button" aria-label="ORAS ECOSHOWER" data-pdf="assets/oras.pdf">
     <img class="cover" src="assets/oras.jpg" alt="Spring Catalog cover" />
     <div class="meta">
@@ -249,6 +296,15 @@
       <p class="subtitle">reducing energy consumption through user feedback</p>
     </div>
   </article>
+
+  <article class="book" tabindex="0" role="button" aria-label="unserdeins" data-pdf="assets/unserdeins.pdf">
+    <img class="cover" src="assets/unserdeins-cover.jpg" alt="Lookbook 2025 cover" />
+    <div class="meta">
+      <h3 class="title">unserdeins</h3>
+      <p class="subtitle">decarbonizing transport through P2P carsharing</p>
+    </div>
+  </article>
+
   <article class="book" tabindex="0" role="button" aria-label="New Project" data-pdf="assets/cologne-visions.pdf">
     <img class="cover" src="cologne-vision.jpg" alt="New Project cover" />
     <div class="meta">
