@@ -159,18 +159,18 @@
 
 .about-content {
   display: flex;
-  align-items: flex-start;
-  gap: 40px; /* space between image and text */
+  align-items: flex-start; /* aligns h2 with image top */
+  gap: 40px;
   max-width: 1000px;
   margin: 120px auto 80px;
-  margin-top: 300px
+  margin-top: 300px; /* pushes section down */
   padding: 0 20px;
 }
 
 .about-image {
   width: 280px;
   height: auto;
-  border-radius: 20px; /* same as your .book cards */
+  border-radius: 20px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -180,17 +180,19 @@
   line-height: 1.6;
 }
 
-.about-text h2 {
-  font-size: 41px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  color: var(--text);
-}
+/* Responsive layout */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-.about-text p {
-  font-size: 23px;
-  color: var(--text);
-  margin-bottom: 16px;
+  .about-image {
+    width: 70%;
+    max-width: 300px;
+    margin-bottom: 24px;
+  }
 }
 
   </style>
