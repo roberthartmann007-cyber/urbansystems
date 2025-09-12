@@ -131,12 +131,12 @@
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .book:hover { 
-  transform: translateY(-10px); 
+  transform: translateY(-12px); 
   box-shadow: 0 16px 40px rgba(0,0,0,.45); 
 }
 
@@ -154,21 +154,21 @@
   left: 0;
   right: 0;
   padding: 18px;
-  background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
-  color: white;
+  background: linear-gradient(to top, rgba(0,0,0,0.8),rgba(0,0,0,0.4)), rgba(0,0,0,0));
+  color: rose;
 }
 
 .title {
   margin: 0;
-  font-size: 28px;   /* requested size */
-  font-weight: 300;  /* requested weight */
+  font-size: 28px; 
+  font-weight: 450;   
   line-height: 1.2;
 }
 
 .subtitle {
   margin: 6px 0 0;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 200;
   color: rgba(255,255,255,0.85);
 }
 
@@ -371,14 +371,14 @@
     <img class="cover" src="assets/cologne-vision.jpg" alt="New Project cover" />
     <div class="meta">
       <h3 class="title">VISIONS 2050</h3>
-      <p class="subtitle">scenarios building for Cologne's mobility future</p>
+      <p class="subtitle">scenarios for Cologne's mobility future</p>
     </div>
   </article>
 
   <article class="book" tabindex="0" role="button" aria-label="IRPIN OPENF" data-pdf="assets/irpin.pdf">
     <img class="cover" src="assets/mission-green.jpg" alt="Product Guide cover" />
     <div class="meta">
-      <h3 class="title">MOBILITY MISSION GREEN</h3>
+      <h3 class="title">MISSION GREEN</h3>
       <p class="subtitle">behavioral change throught nudging</p>
     </div>
   </article>
