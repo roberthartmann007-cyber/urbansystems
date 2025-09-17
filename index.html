@@ -11,7 +11,41 @@
 }
     :root {
       --bg: #151515; --card: #16171a; --text: #e9eaee; --muted:#a8acb3; --ring:#fa97c9;
-    }
+  }
+
+    /* Einheitlicher vertikaler Rhythmus */
+:root {
+  --section-spacing: 120px; /* globaler Abstand zwischen Sektionen */
+}
+
+/* Intro Section */
+.intro {
+  max-width: 1200px;
+  margin: var(--section-spacing) auto;
+  padding: 0 20px;
+  text-align: left;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 18px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: var(--section-spacing) auto;
+}
+
+/* About Section */
+.about-content {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: var(--section-spacing) auto;
+  padding: 0 20px;
+}
     body {
     margin: 0;
     font-family: "Neue Haas Grotesk", sans-serif;
